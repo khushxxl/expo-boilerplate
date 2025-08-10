@@ -1,27 +1,43 @@
-import { Link } from "expo-router";
-import { View, Text, TouchableOpacity } from "react-native";
+import { CustomButton } from "@/components/custom-button";
+import TextWrapper from "@/components/text-wrapper";
+import { useRouter } from "expo-router";
 
-export default function IndexPage() {
+import { ChevronRight } from "lucide-react-native";
+import { Image, View } from "react-native";
+import "./global.css";
+
+export default function App() {
+  const router = useRouter();
+
   return (
-    <View className="flex-1 items-center justify-center p-5">
-      <Text className="text-4xl font-bold mb-5">Welcome to Expo</Text>
-      <Text className="text-center mb-5">
-        This is a boilerplate project built with Expo and React Native. It
-        includes:
-      </Text>
-      <View className="mb-5">
-        <Text className="text-center mb-2">• Expo Router for navigation</Text>
-        <Text className="text-center mb-2">
-          • Supabase for authentication & database
-        </Text>
-        <Text className="text-center mb-2">
-          • RevenueCat for in-app purchases
-        </Text>
-        <Text className="text-center mb-2">• TailwindCSS for styling</Text>
+    <View className="flex-1 items-center justify-center relative bg-white">
+      <View className="items-center justify-center absolute bottom-[10%] w-full px-4">
+        <Image
+          source={require("@/assets/images/logo-black-bg.png")}
+          className="w-[64px] h-[64px] "
+        />
+        <TextWrapper
+          weight="bold"
+          className="text-[40px] text-center mt-8"
+          style={{ lineHeight: 40, letterSpacing: 0.2 }}
+        >
+          Welcome to{"\n"}Nurecover
+        </TextWrapper>
+        <TextWrapper
+          className="text-center  text-[#121212] my-5"
+          style={{ lineHeight: 20, letterSpacing: 0.2 }}
+        >
+          Track. Recover. Thrive personalised to your body.
+        </TextWrapper>
+        <CustomButton
+          title="Get Started"
+          variant="primary"
+          size="large"
+          style={{ width: "90%", borderRadius: 14, marginTop: 20 }}
+          onPress={() => router.push("/screens/welcome-screen")}
+          icon={<ChevronRight color="#fff" height={20} width={20} />}
+        />
       </View>
-      <TouchableOpacity className="bg-blue-500 px-6 py-3 rounded-lg">
-        <Text className="text-white font-semibold">Get Started</Text>
-      </TouchableOpacity>
     </View>
   );
 }
